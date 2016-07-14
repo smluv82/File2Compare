@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration>
+<!-- 	<property name="LOG_DIR" value="${user.home}/SafeIdentity-IM/logs"/> -->
+	<property name="LOG_DIR" value="D:/development/logs"/>
+	<property name="LOG_FILE_PCERT_NAME" value="file2compare.log"/>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+<!-- 			<pattern>[%-5level] [%d{HH:mm:ss.SSS}] [%thread] [%class{0}.%method:%line] %msg%n</pattern> -->
+			<pattern>[%-5level] [%d{HH:mm:ss.SSS}] [%class{0}.%method:%line] %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="file2compare" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${LOG_DIR}/${LOG_FILE_PCERT_NAME}</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_DIR}/${LOG_FILE_PCERT_NAME}.%d{yyyyMMdd}.%i.log</FileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+			<!-- or whenever the file size reaches 50MB -->
+				<maxFileSize>200MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>[%-5level] [%d{HH:mm:ss.SSS}] [%class{0}.%method:%line] %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="org.springframework">
+		<level value="info" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<logger name="org.apache">
+		<level value="info" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+<!-- 	<logger name="org.quartz"> -->
+<!-- 		<level value="info" /> -->
+<!-- 		<appender-ref ref="STDOUT" /> -->
+<!-- 		<appender-ref ref="IM_LOG" /> -->
+<!-- 	</logger> -->
+
+	<root level="debug">
+		<appender-ref ref="STDOUT" />
+<!-- 		<appender-ref ref="pCert_LOG" /> -->
+	</root>
+</configuration>
