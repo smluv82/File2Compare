@@ -38,6 +38,7 @@
 			<version>11.1.0.7.0</version>
 		</dependency>
 
+		<!-- JSP page dependency -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -48,6 +49,7 @@
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<!-- JSP page dependency -->
 
 		<dependency>
 			<groupId>com.mysema.querydsl</groupId>
@@ -77,6 +79,12 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.5</version>
 		</dependency>
 	</dependencies>
 

@@ -1,7 +1,8 @@
-package com.smluv82.file2compare.security;
+package com.smluv82.file2compare.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -9,8 +10,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.smluv82.file2compare.constants.File2CompareConstants;
+import com.smluv82.file2compare.security.File2CompareAuthenticationProvider;
 import com.smluv82.file2compare.util.UsefulUtil;
 
 @Configuration
@@ -18,9 +21,6 @@ import com.smluv82.file2compare.util.UsefulUtil;
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private static Logger logger = LoggerFactory.getLogger(File2CompareConstants.LOG_FILE2COMPARE);
-
-//	@Autowired
-//	private UserDetailsService f2cUserDetailsService;
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) {
@@ -31,19 +31,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/bower_components/**").permitAll();
 
 			httpSecurity.authorizeRequests()
-			.antMatchers("/login").anonymous()
-			.anyRequest().hasAuthority("ROLE_ADMIN")
+			.antMatchers("/authenticate/login").anonymous()
+			.antMatchers("/jquery/**", "/angularjs/**").hasAuthority("ROLE_ADMIN")
 			.and()
 			.formLogin()
-			.loginPage("/login")
-			.loginProcessingUrl("/login/process")
-			.failureUrl("/login?fail")
-			.usernameParameter("username")
-			.passwordParameter("password")
-			.defaultSuccessUrl("/admin/main", true)
+			.loginPage("/authenticate/login")
+			.loginProcessingUrl("/authenticate/login/process")
+			.failureUrl("/authenticate/login?fail")
+			.usernameParameter("id")
+			.passwordParameter("pwd")
+			.defaultSuccessUrl("/jquery/compare/main", true)
 			.and()
 			.logout()
-			.logoutSuccessUrl("/logout");
+			.logoutSuccessUrl("/authenticate/logout");
 		}catch(Exception e) {
 			logger.error(UsefulUtil.getPrintStacTraceString(e));
 		}
@@ -53,5 +53,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) {
 		auth.authenticationProvider(new File2CompareAuthenticationProvider());
 	}
-
 }

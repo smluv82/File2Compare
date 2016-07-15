@@ -30,11 +30,7 @@ public class File2CompareAuthenticationProvider implements AuthenticationProvide
 		//it's don't product logging
 		logger.info("ID : {}, PWD : {}", adminId, adminPwd);
 
-
-
-		logger.info("authentication start");
-
-
+		logger.info("authenticate start");
 
 		securityService.authenticate(adminId, adminPwd);
 
@@ -46,8 +42,6 @@ public class File2CompareAuthenticationProvider implements AuthenticationProvide
 
 	@Override
 	public boolean supports(Class<?> authentication) {
-//		return false;
 		return authentication.equals(UsernamePasswordAuthenticationToken.class);
 	}
-
 }

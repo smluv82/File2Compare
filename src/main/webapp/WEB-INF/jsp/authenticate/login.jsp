@@ -7,12 +7,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>File2Compare 로그인</title>
 
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/bower-components/bootstrap/dist/css/bootstrap.css"/>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/bower_components/bootstrap/dist/css/bootstrap.css"/>
 <%-- 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bower-components/" --%>
 
-	<script type="text/javascript" src="${pageContext.request.contextPath}/bower-components/jquery/dist/jquery.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/bower-components/bootstrap/dist/js/bootstrap.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/bower-components/bootbox.js/bootbox.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/bower_components/bootbox.js/bootbox.js"></script>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
 		<div class="container">
 
 <!-- 			<form class="form-login" method="post" id="loginFrm" name="loginFrm" action="/common/authenticate/process"> -->
-			<form class="form-login" method="post" id="loginFrm" name="loginFrm" action="process">
+			<form class="form-login" method="post" id="loginFrm" name="loginFrm" action="/authenticate/login/process">
 				<h2 class="form-login-heading">pCertLine</h2>
 				<div class="login-wrap">
 					<input type="text" id="id" name="id" value="pCertPC1" class="form-control" placeholder="User ID" autofocus> <br>
