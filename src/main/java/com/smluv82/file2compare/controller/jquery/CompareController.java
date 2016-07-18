@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smluv82.file2compare.base.BaseController;
 import com.smluv82.file2compare.util.FileEncryptUtil;
@@ -43,5 +44,11 @@ public class CompareController extends BaseController {
 		}
 
 		return "jquery/compare/test";
+	}
+
+	@RequestMapping(value="/main")
+	@ResponseBody
+	public String mainView() {
+		return "구현중";
 	}
 }
