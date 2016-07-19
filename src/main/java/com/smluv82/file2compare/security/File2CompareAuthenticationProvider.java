@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 import com.smluv82.file2compare.config.PropertiesConfig;
 import com.smluv82.file2compare.constants.File2CompareConstants;
 import com.smluv82.file2compare.domain.UserInfo;
-import com.smluv82.file2compare.repository.UserInfoRepository;
 import com.smluv82.file2compare.service.SecurityService;
 import com.smluv82.file2compare.util.AES;
 
@@ -27,9 +26,6 @@ public class File2CompareAuthenticationProvider implements AuthenticationProvide
 
 	@Autowired
 	private transient SecurityService securityService;
-
-	@Autowired
-	private UserInfoRepository userInfoRepository;
 
 	@Override
 	public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
@@ -46,9 +42,9 @@ public class File2CompareAuthenticationProvider implements AuthenticationProvide
 		logger.info("authenticate start");
 		UserInfo userInfo = securityService.authenticate(adminId, encAdminPwd);
 
-		System.out.println("ssmoisdfsdfsdfsdf");
-
 		if(userInfo != null) {
+			logger.info("userinfo is exist. token create.");
+
 			final List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
 			roles.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 

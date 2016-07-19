@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-@ComponentScan
+@ComponentScan("com.smluv82.file2compare")
 @PropertySource("f2c-config.properties")
 public class File2CompareApplication extends SpringBootServletInitializer {
 

@@ -14,18 +14,11 @@ import com.smluv82.file2compare.domain.UserInfo;
 @Controller
 @RequestMapping(value="/authenticate")
 public class SecurityController extends BaseController {
-	@Value("${pass.key}")
-	private String passKey;
-
 	@Value("${page.javascript.framework}")
 	private String pageFramework;
 
 	@RequestMapping(value="/login")
 	public void login(final HttpSession session) {
-		System.out.println("passKey : " + passKey);
-
-		securityService.authenticate("pCertPC1", "595d289d08bd78f7831f0b3ee3e7e72b");
-
 		logger.info("Welcome login! : {}", session.getId());
 	}
 

@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			httpSecurity.authorizeRequests().antMatchers("/bower_components/**").permitAll();
 
 			httpSecurity.authorizeRequests()
-					.antMatchers("/authenticate/login", "/authenticate/login/**").anonymous()
+					.antMatchers("/authenticate/login").anonymous()
 					.antMatchers("/jquery/**", "/angularjs/**").hasAuthority("ROLE_ADMIN")
 					.and()
 					.formLogin()
