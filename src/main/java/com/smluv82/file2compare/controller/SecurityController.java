@@ -1,10 +1,13 @@
 package com.smluv82.file2compare.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,7 +22,7 @@ public class SecurityController extends BaseController {
 
 	@RequestMapping(value="/login")
 	public void login(final HttpSession session) {
-		logger.info("Welcome login! : {}", session.getId());
+		logger.info("Welcome fil2compare login! : {}", session.getId());
 	}
 
 	@RequestMapping(value="/login/success")
@@ -41,5 +44,19 @@ public class SecurityController extends BaseController {
 				return "redirect:/angularjs/compare/main";
 			}
 		}
+	}
+
+	@RequestMapping(value="/logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
+		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+		if(authentication != null) {
+			new SecurityContextLogoutHandler().logout(request, response, authentication);
+		}
+
+		request.getSession().invalidate();
+
+		logger.debug("file2compare logout sucess");
+		return "redirect:/authenticate/login?logout";
 	}
 }

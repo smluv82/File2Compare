@@ -49,6 +49,8 @@ public class CompareController extends BaseController {
 	@RequestMapping(value="/main")
 	@ResponseBody
 	public String mainView() {
+
+
 		return "구현중";
 	}
 }

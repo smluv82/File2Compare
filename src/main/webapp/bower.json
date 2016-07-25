@@ -18,6 +18,9 @@
     "jquery": "1.12.3",
     "bootstrap": "3.3.6",
     "jquery-ui": "1.11.4",
-    "bootbox.js": "bootbox#4.4.0"
+    "bootbox.js": "bootbox#4.4.0",
+    "components-font-awesome": "^4.6.3",
+    "jquery.scrollTo": "^2.1.2",
+    "jquery.nicescroll": "^3.6.8"
   }
 }

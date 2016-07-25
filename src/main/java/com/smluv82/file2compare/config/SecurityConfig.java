@@ -57,9 +57,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.authenticationProvider(this.file2AuthenticationProvider);
 	}
 
-//	@Override
-//	protected AuthenticationManager authenticationManager() throws Exception {
-//		return new ProviderManager(Arrays.asList((AuthenticationProvider) new File2CompareAuthenticationProvider()));
-//	}
-
 }

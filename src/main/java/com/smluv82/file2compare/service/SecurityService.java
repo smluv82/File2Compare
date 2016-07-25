@@ -8,6 +8,7 @@ import com.smluv82.file2compare.domain.UserInfo;
 @Service
 public class SecurityService extends BaseService {
 	public UserInfo authenticate(String adminId, String adminPwd) {
+
 		UserInfo userInfo = userInfoRepository.findByUserIdAndUserPass(adminId, adminPwd);
 
 		if(userInfo != null) {
