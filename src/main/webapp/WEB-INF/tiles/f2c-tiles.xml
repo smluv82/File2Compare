@@ -11,8 +11,8 @@
 	</definition>
 
 	<definition name="jquery/compare/**" extends="f2c.layout">
-		<put-attriubte name="sidebar" value="/WEB-INF/jsp/tiles/jquery.sidebar.jsp"/>
-		<put-attribute name="body" value="/WEB-INF/jsp/jquery/commpare/{1}.jsp"/>
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/tiles/jquery.sidebar.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/jquery/compare/{1}.jsp"/>
 	</definition>
 
 	<definition name="angularjs/compare/**" extends="f2c.layout">

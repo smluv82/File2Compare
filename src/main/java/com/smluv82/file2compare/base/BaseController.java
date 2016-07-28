@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.smluv82.file2compare.constants.File2CompareConstants;
+import com.smluv82.file2compare.service.CompareService;
 import com.smluv82.file2compare.service.SecurityService;
 
 public class BaseController {
@@ -12,4 +13,7 @@ public class BaseController {
 
 	@Autowired
 	protected SecurityService securityService;
+
+	@Autowired
+	protected CompareService compareService;
 }

@@ -10,10 +10,10 @@
 
 <!-- SCRIPT Library -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/bower_components/jquery/dist/jquery.js"></script>
-<script type="text/javascript" scr="${pageContext.request.contextPath}/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/bower_components/bootbox.js/bootbox.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/bower_components/jquery.scrollTo/jquery.scrollTo.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/bower_components/jquery.nicescroll/dist/jquery.nicescroll.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resourcecs/js/jquery.sparkline.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.sparkline.js"></script>
 
 <!-- SCRIPT Library -->

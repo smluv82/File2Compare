@@ -10,11 +10,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PropertiesConfig {
-	@Value("${root.path}")
-	private String rootPath;
+//	@Value("${root.path}")
+//	private String rootPath;
+//
+//	@Value("${encrypt.algorithm}")
+//	private String encryptAlgorithm;
 
-	@Value("${encrypt.algorithm}")
-	private String encryptAlgorithm;
+	@Value("${file.ext}")
+	private String fileExt;
 
 	@Value("${pass.key}")
 	private String passKey;
@@ -24,9 +27,11 @@ public class PropertiesConfig {
 
 	@PostConstruct
 	public void init() {
-		propertiesMap.put("rootPath", rootPath);
+//		propertiesMap.put("rootPath", rootPath);
+//		propertiesMap.put("encryptAlgorithm", encryptAlgorithm);
+
 		propertiesMap.put("passKey", passKey);
-		propertiesMap.put("encryptAlgorithm", encryptAlgorithm);
+		propertiesMap.put("fileExt", fileExt);
 	}
 
 	/**

@@ -21,7 +21,7 @@
 
 <!-- 			<form class="form-login" method="post" id="loginFrm" name="loginFrm" action="/common/authenticate/process"> -->
 			<form class="form-login" method="post" id="loginFrm" name="loginFrm" action="/authenticate/login/process">
-				<h2 class="form-login-heading">pCertLine</h2>
+				<h2 class="form-login-heading">File2Compare</h2>
 				<div class="login-wrap">
 					<input type="text" id="id" name="id" value="pCertPC1" class="form-control" placeholder="User ID" autofocus> <br>
 					<input type="password" id="pwd" name="pwd" value="pCertPC!234" class="form-control" placeholder="Password"> <br>
