@@ -10,12 +10,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PropertiesConfig {
-//	@Value("${root.path}")
-//	private String rootPath;
-//
-//	@Value("${encrypt.algorithm}")
-//	private String encryptAlgorithm;
-
 	@Value("${file.ext}")
 	private String fileExt;
 

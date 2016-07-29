@@ -9,20 +9,22 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 
 import com.smluv82.file2compare.constants.File2CompareConstants;
+import com.smluv82.file2compare.domain.Compare;
 
 public class FileEncryptUtil {
-	@Value("${encrypt.algorithm}")
-	private static String encryptAlgoritm;
-
 	private static Logger logger = LoggerFactory.getLogger(File2CompareConstants.LOG_FILE2COMPARE);
+	private static String[] exts;
 
-	public static void getFilePathAndName(String path, List<String> fileList) {
+	public static void getFilePathAndName(String path, String fileExt, List<Compare> fileList) {
+		Compare compare = null;
+		getExts(fileExt);
+
 		File dir = new File(path);
 		File[] files = dir.listFiles();
 		try {
@@ -33,18 +35,32 @@ public class FileEncryptUtil {
 				if(file.isFile()) {
 					logger.info("파일 경로 및 이름 : {}", file.getAbsolutePath());
 					logger.info("파일 이름 : {}", file.getName());
-					fileList.add(file.getAbsolutePath());
+
+					logger.info("파일 확장자 : {}", fileExt);
+					for(String ext : exts) {
+//						if(file.getName().indexOf(ext) >= 0) {
+						if(file.getName().endsWith(ext)) {
+//							fileList.add(file.getName());
+							compare = new Compare();
+							compare.setFileName(file.getName());
+							compare.setFullPathFileName(file.getAbsolutePath());
+
+							fileList.add(compare);
+							break;
+						}
+					}
 				}else if(file.isDirectory()) {
 					logger.info("디렉토리 명 : {}", file.getAbsolutePath());
-					getFilePathAndName(file.getCanonicalPath(), fileList);
+					getFilePathAndName(file.getCanonicalPath(), fileExt, fileList);
 				}
 			}
 		}catch(IOException e) {
-			logger.error(UsefulUtil.getPrintStacTraceString(e));
+//			logger.error(UsefulUtil.getPrintStacTraceString(e));
+			logger.error(ExceptionUtils.getStackTrace(e));
 		}
 	}
 
-	public static String getFileHash(String fullPathFileName) {
+	public static String getFileHash(String fullPathFileName, String encryptAlgorithm) {
 		String base64 = null;
 		byte[] binary = null;
 		byte[] hash = null;
@@ -53,8 +69,8 @@ public class FileEncryptUtil {
 			binary = IOUtils.toByteArray(new FileInputStream(fullPathFileName));
 
 			MessageDigest mDigest;
-			if(encryptAlgoritm != null && !"".equals(encryptAlgoritm)) {
-				mDigest = MessageDigest.getInstance(encryptAlgoritm);
+			if(encryptAlgorithm != null && !"".equals(encryptAlgorithm)) {
+				mDigest = MessageDigest.getInstance(encryptAlgorithm);
 			}else {
 				mDigest = MessageDigest.getInstance("SHA-256");
 			}
@@ -63,17 +79,23 @@ public class FileEncryptUtil {
 
 			base64 = Base64.encodeBase64String(hash);
 		} catch (FileNotFoundException e) {
-			logger.error(UsefulUtil.getPrintStacTraceString(e));
+			logger.error(ExceptionUtils.getStackTrace(e));
 			return null;
 		} catch (IOException e) {
-			logger.error(UsefulUtil.getPrintStacTraceString(e));
+			logger.error(ExceptionUtils.getStackTrace(e));
 			return null;
 		} catch (NoSuchAlgorithmException e) {
-			logger.error(UsefulUtil.getPrintStacTraceString(e));
+			logger.error(ExceptionUtils.getStackTrace(e));
 			return null;
 		}
 
 		return base64;
+	}
+
+	public static void getExts(String fileExt) {
+		if(exts == null) {
+			exts = fileExt.split(",");
+		}
 	}
 
 //	public static void main(String[] args) {
